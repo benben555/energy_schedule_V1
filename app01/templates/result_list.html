@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+        <div style="margin-bottom: 10px" class="clearfix">
+            <div style="float: right;width: 300px;">
+                <form method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="{{ search_data }}" name="q" placeholder="关键字">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
+
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                调度结果
+            </div>
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th style="width: 50px">轮数</th>
+                    <th style="width: 250px">供电用户名单</th>
+                    <th style="width: 250px">各自供电结果</th>
+                    <th style="width: 250px">需电用户名单</th>
+                    <th style="width: 250px">各自得电结果</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <th scope="row">{{ obj.index }}</th>
+                        <td>{{ obj.suppliers }}</td>
+                        <td>{{ obj.supply }}</td>
+                        <td>{{ obj.demanders }}</td>
+                        <td>{{ obj.demand }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="/result/{{ obj.index }}/info/">查看详细信息</a>
+{#                            <a class="btn btn-danger btn-xs" href="#">修改</a>#}
+{#                            <a class="btn btn-danger btn-xs" href="#">删除</a>#}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="clearfix">
+            <ul class="pagination" style="float: left">
+                {{ page_string }}
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

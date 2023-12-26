@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <style type="text/css">
+    span{
+        margin-left: 20px;
+    }
+    </style>
+    <div class="container">
+        <div style="margin-bottom: 10px" class="clearfix">
+            <a class="btn btn-success" href="/user/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                注册新用户
+            </a>
+            <div style="float: right;width: 300px;">
+                <form method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="{{ search_data }}" name="q" placeholder="用户名关键字">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
+
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                用户列表
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                {{ message }}
+
+            </div>
+            <div class="panel-body">
+                <p>MGCC统一将新注册的用户添加进列表.</p>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th style="width: 50px">ID</th>
+                    <th style="width: 100px">用户名</th>
+                    <th style="width: 150px">手机号</th>
+                    <th style="width: 100px">剩余电量</th>
+                    <th style="width: 100px">优先级</th>
+                    <th style="width: 130px">当前状态</th>
+                    {#                    <th>PK</th>#}
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <th scope="row">{{ obj.id }}</th>
+                        <td>{{ obj.username }}</td>
+                        <td>{{ obj.phone }}</td>
+                        <td>{{ obj.remain_power }}</td>
+                        <td>{{ obj.priority }}</td>
+                        <td>{{ obj.status }}</td>
+                        {#                        <td>pk1:{{ obj.sb1 }} <br> pk2:{{ obj.sb2 }}</td>#}
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="/user/{{ obj.id }}/dispatch/">参与调度</a>
+                            <a class="btn btn-primary btn-xs" href="/user/{{ obj.id }}/info/">查看详细信息</a>
+                            <a class="btn btn-danger btn-xs" href="/user/{{ obj.id }}/edit/">修改</a>
+                            <a class="btn btn-danger btn-xs" href="/user/delete/?nid={{ obj.id }}">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="clearfix">
+            <ul class="pagination" style="float: left">
+                {{ page_string }}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

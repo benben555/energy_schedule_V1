@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+    <div class="container">
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-success" href="/consumer/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                注册新用户
+            </a>
+        </div>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                用户列表
+            </div>
+            <div class="panel-body">
+                <p>MGCC统一将新注册的用户添加进列表.</p>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户姓名</th>
+                    <th>用户优先级</th>
+                    <th>用户邮箱</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                <tr>
+                    <th scope="row">{{ obj.id }}</th>
+                    <td>{{ obj.consumername }}</td>
+                    <td>{{ obj.priority }}</td>
+                    <td>{{ obj.email }}</td>
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="/consumer/{{ obj.id }}/edit/">编辑</a>
+                        <a class="btn btn-danger btn-xs" href="/consumer/delete/?nid={{ obj.id }}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">新注册用户</h3>
+            </div>
+            <div class="panel-body">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                        <label>{{ field.label }}</label>
+                        {{ field }}
+                            <span style="color: red;">{{ field.errors.0 }}</span>
+
+                        </div>
+                    {% endfor %}
+{#                    <div class="form-group">#}
+{#                        <label>优先级</label>#}
+{#                        <input type="text" style="width:200px;" class="form-control" placeholder="优先级"#}
+{#                               name="priority">#}
+{#                    </div>#}
+                    <div class="form-group">
+                        <label>私钥1</label>
+                        <input type="text" style="width:200px;" class="form-control" placeholder="私钥1" name="a1">
+                    </div>
+                    <div class="form-group">
+                        <label>私钥2</label>
+                        <input type="text" style="width:200px;" class="form-control" placeholder="私钥2" name="a2">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">注 册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

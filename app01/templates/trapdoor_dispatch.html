@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <style type="text/css">
+        span {
+            margin-left: 20px;
+        }
+    </style>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                MGCC生成陷门进行匹配调度
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                {{ message }}
+            </div>
+            <div class="panel-body">
+                <ul>
+                    {% for obj in messages %}
+                        <li>{{ obj.message }}</li>
+                    {% endfor %}
+                </ul>
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label>{{ field.label }}</label>
+                            {{ field }}
+                            <span style="color: red;">{{ field.errors.0 }}</span>
+                        </div>
+                    {% endfor %}
+                    {% if disable_button %}
+                        <button type="submit" class="btn btn-primary" disabled>进行调度</button>
+                    {% else %}
+                        <button type="submit" class="btn btn-primary">进行调度</button>
+                    {% endif %}
+                    {#                    <button type="submit">保 存</button>#}
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

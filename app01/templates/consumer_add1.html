@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {#    {{ form.b1.label }}{{ form.b1 }}#}
+    {#    {{ form.b2.label }}{{ form.b2 }}#}
+    {#    {{ form.priority.label}}{{ form.priority}}#}
+    {% for filed in form %}
+        {{ filed.label }}:{{ filed }}
+    {% endfor %}
+</form>
+</body>
+</html>

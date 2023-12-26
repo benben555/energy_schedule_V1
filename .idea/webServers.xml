@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8e3ca0e2-65a1-4d80-9219-1d1a2d268e7f" name="charm-crypto">
+        <fileTransfer accessType="SFTP" host="106.54.214.88" port="22" sshConfigId="d390eed0-57c3-456a-a3e4-f7254ef7c2d5" sshConfig="ubuntu@106.54.214.88:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
